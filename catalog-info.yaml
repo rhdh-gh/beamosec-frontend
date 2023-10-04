@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: beamosec-poi-map-app-dev
+  annotations:
+    argocd/app-name: beamosec-poi-map-app-dev
+    backstage.io/kubernetes-id: beamosec-poi-map-app
+    backstage.io/kubernetes-namespace: beamosec
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-gh/beamosec-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.rosa-x4jc7.l07n.p1.openshiftapps.com/dev-pipelines/ns/beamosec/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.rosa-x4jc7.l07n.p1.openshiftapps.com/k8s/ns/beamosec/deployments/beamosec-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.rosa-x4jc7.l07n.p1.openshiftapps.com/#https://github.com/rhdh-gh/beamosec-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://beamosec-poi-map-app-beamosec.apps.rosa-x4jc7.l07n.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/beamo"
+  system: workshop-system-beamosec
+  consumesApis:
+    - gateway-api-beamosec
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-beamosec
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/beamo"
